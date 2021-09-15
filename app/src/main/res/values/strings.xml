@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Final PDS</string>
+    <string name="play">Play</string>
+    <string name="record">Record</string>
+    <string name="record_error">Opps there was an error while recording</string>
+    <string name="record_success">Started recording</string>
+</resources>
