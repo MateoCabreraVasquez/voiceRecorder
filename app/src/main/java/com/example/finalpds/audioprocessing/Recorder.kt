@@ -3,29 +3,23 @@ package com.example.finalpds.audioprocessing
 import android.content.res.Resources
 import android.media.MediaRecorder
 import com.example.finalpds.R
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.IOException
-import javax.annotation.Resource
+import javax.inject.Inject
 
+class Recorder @Inject constructor(  var recorderDependencies:RecorderDependencies ) : IRecorder  {
+    private  var soundRecorder:MediaRecorder?=null
 
-class Recorder : IRecorder  {
-
-    private  var soundRecorder: MediaRecorder? = null
 
     override fun createRecordingInstance(path: String, name: String): String {
-        soundRecorder = MediaRecorder().apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-            setOutputFile("$path$name")
-            try {
-                prepare()
-                return Resources.getSystem().getString(R.string.record_success)
-            } catch (e: IOException) {
-                return Resources.getSystem().getString(R.string.record_error)
-            }
+        try {
+            soundRecorder=recorderDependencies.getMediaRecordInstance(path,name)
+            soundRecorder?.prepare()
+            return Resources.getSystem().getString(R.string.record_success)
+        } catch (e: IOException) {
+            return Resources.getSystem().getString(R.string.record_error)
         }
     }
-
 
     override fun starRecording(){
         soundRecorder?.start()
@@ -33,6 +27,7 @@ class Recorder : IRecorder  {
 
     override fun stopRecording(){
         soundRecorder?.stop()
+        soundRecorder?.release()
         soundRecorder = null
     }
 

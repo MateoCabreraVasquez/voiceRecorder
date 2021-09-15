@@ -1,8 +1,10 @@
 package com.example.finalpds
 
+import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 
 
-@AndroidEntryPoint
-class PdsApplication : AppCompatActivity()
+@HiltAndroidApp
+class PdsApplication : Application()

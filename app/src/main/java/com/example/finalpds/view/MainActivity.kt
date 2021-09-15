@@ -14,8 +14,10 @@ import androidx.core.content.ContextCompat
 
 import com.example.finalpds.R
 import com.example.finalpds.viewmodel.MainActivityViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.streams.asStream
+
 
 class MainActivity : AppCompatActivity() {
     private val notificator by lazy {Toast.makeText(this,"",Toast.LENGTH_SHORT)}

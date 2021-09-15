@@ -7,8 +7,8 @@ import com.example.finalpds.audioprocessing.Recorder
 import dagger.hilt.android.*
 import javax.inject.Inject
 
-
-class MainActivityViewModel   @Inject constructor(val recorder:Recorder) : ViewModel(){
+class MainActivityViewModel  constructor(  ): ViewModel(){
+    var recorder =Recorder()
     val isRecording :MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean> ()}
     val isPlaying : MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean> ()}
     val statusMessage:MutableLiveData<String?> by lazy { MutableLiveData<String?> ()}
